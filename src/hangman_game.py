@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+from playsound import playsound
 
 class HangmanGame:
     def __init__(self, master):
@@ -18,6 +19,7 @@ class HangmanGame:
         self.correct_guesses = set()
         self.incorrect_guesses = set()
         self.attempts_left = 7
+        playsound('./sounds/Windows Notify Calendar.wav', False)
         self.initialize_gui()
 
     def choose_secret_word(self):
@@ -98,6 +100,7 @@ class HangmanGame:
             button.pack(side="left", padx=2, pady=2)
 
     def guess_letter(self, letter):
+        playsound('.\sounds\single-quack-from-a-duck-14494.mp3', False)
         if letter in self.secret_word and letter not in self.correct_guesses:
             self.correct_guesses.add(letter)
         elif letter not in self.incorrect_guesses:
@@ -126,6 +129,7 @@ class HangmanGame:
         self.buttons_frame.pack_forget()
         
         # Display the game over message in the now-empty area
+        playsound('.\sounds\Voicy_You suck.mp3', False)
         self.game_over_label = tk.Label(self.master, text=message, font=self.game_over_font, fg="red", bg=self.bg)
         self.game_over_label.pack(pady=(10, 20))
         
